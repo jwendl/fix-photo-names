@@ -27,7 +27,7 @@ namespace ConsoleApp1
         {
             var directories = ImageMetadataReader.ReadMetadata(imagePath);
             var possibleDates = directories.SelectMany(d => d.Tags).Where(t => t.Name.ToLowerInvariant().Contains("date"));
-            var tag = possibleDates.OrderBy(d => ParseDate(d.Description)).FirstOrDefault();
+            var tag = possibleDates.OrderByDescending(d => ParseDate(d.Description)).FirstOrDefault();
             var possibleDate = ParseDate(tag.Description);
             return possibleDate;
         }
